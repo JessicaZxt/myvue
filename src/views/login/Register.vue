@@ -10,15 +10,10 @@
       :rules="rules"
     >
       <FormItem label="用户名" prop="userNmae">
-        <Input v-model="registerForm.userNmae" placeholder="User ID"> ></Input>
+        <Input v-model="registerForm.userNmae" placeholder="User ID" />
       </FormItem>
       <FormItem label="密码" prop="password">
-        <Input
-          v-model="registerForm.password"
-          type="password"
-          password
-          placeholder="Password"
-        />
+        <Input v-model="registerForm.password" type="password" password placeholder="Password" />
       </FormItem>
       <FormItem label="确认密码" prop="confirmPassword">
         <Input
@@ -29,7 +24,7 @@
         />
       </FormItem>
       <FormItem label="手机号码" prop="phone">
-        <Input v-model="registerForm.phone" placeholder="Phone"> ></Input>
+        <Input v-model="registerForm.phone" placeholder="Phone" />
       </FormItem>
       <FormItem label="性别" prop="sex">
         <RadioGroup v-model="registerForm.sex">
@@ -38,19 +33,10 @@
         </RadioGroup>
       </FormItem>
       <FormItem label="邮箱" prop="email">
-        <Input
-          v-model="registerForm.email"
-          class="emailTxt"
-          placeholder="Email"
-        />
+        <Input v-model="registerForm.email" class="emailTxt" placeholder="Email" />
       </FormItem>
       <FormItem class="btn-label">
-        <Button
-          type="primary"
-          class="register-btn"
-          @click="handleRegister('registerForm')"
-          >注册</Button
-        >
+        <Button type="primary" class="register-btn" @click="handleRegister('registerForm')">注册</Button>
       </FormItem>
     </Form>
     <slot></slot>
@@ -59,64 +45,64 @@
 
 <script>
 export default {
-  data() {
+  data () {
     const validatePass = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("请输入密码"));
+        callback(new Error("请输入密码"))
       } else {
         if (this.registerForm.password !== "") {
           // 对第二个密码框单独验证
-          this.$refs.formCustom.validateField("passwdCheck");
+          this.$refs.formCustom.validateField("passwdCheck")
         }
-        callback();
+        callback()
       }
-    };
+    }
     const validatePassCheck = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("请输入确认密码"));
+        callback(new Error("请输入确认密码"))
       } else if (value !== this.registerForm.password) {
-        callback(new Error("两次密码不一致"));
+        callback(new Error("两次密码不一致"))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     const validatePhone = (rule, value, callback) => {
       if (value === "") {
-        callback(new Error("请输入手机号"));
+        callback(new Error("请输入手机号"))
       } else if (!/^1\d{10}$/.test(value)) {
-        callback(new Error("手机号码有误，请重填"));
+        callback(new Error("手机号码有误，请重填"))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     const validateEmail = (rule, value, callback) => {
       var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
       if (value === "") {
-        callback(new Error("请输入邮箱"));
+        callback(new Error("请输入邮箱"))
       } else if (!reg.test(value)) {
-        callback(new Error("邮箱格式不正确"));
+        callback(new Error("邮箱格式不正确"))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     const validateUserNmae = (rule, value, callback) => {
-      var reg = /^[a-zA-Z0-9_-]{4,16}$/;
+      var reg = /^[a-zA-Z0-9_-]{4,16}$/
       if (value === "") {
-        callback(new Error("请输入用户名"));
+        callback(new Error("请输入用户名"))
       } else if (!reg.test(value)) {
         callback(new Error("只能使用字母，数字以及下划线组合"));
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     const validateSex = (rule, value, callback) => {
       var reg = /^[a-zA-Z0-9_-]{4,16}$/;
       if (value === "") {
-        callback(new Error("请选择性别"));
+        callback(new Error("请选择性别"))
       } else {
-        callback();
+        callback()
       }
-    };
+    }
     return {
       registerForm: {
         userNmae: "",
@@ -133,21 +119,21 @@ export default {
         confirmPassword: [{ validator: validatePassCheck, trigger: "blur" }],
         sex: [{ validator: validateSex, trigger: "change" }],
         email: [{ validator: validateEmail, trigger: "blur" }],
-      },
-    };
+      }
+    }
   },
   methods: {
-    handleRegister(name) {
+    handleRegister (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
           this.$Message.success("Success!");
         } else {
           this.$Message.error("Fail!");
         }
-      });
-    },
-  },
-};
+      })
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

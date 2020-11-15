@@ -2,13 +2,12 @@ import axios from 'axios'
 import { Message } from 'view-design'
 
 const service = axios.create({
-    baseURL: 'https://some-domain.com/api/',
+    baseURL: 'http://192.168.0.104:8081',
     timeout: 12000
 });
 
 // 添加请求拦截器
 service.interceptors.request.use(function (config) {
-    config.headers['Content-Type'] = 'application/json,text/plain'
     return config;
 }, function (error) {
     // 对请求错误做点什么

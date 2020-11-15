@@ -11,12 +11,7 @@
         </div>
         <div v-show="showRegisterPage">
           <register>
-            <a
-              class="a-link"
-              style="transform: rotateY(180deg)"
-              @click="showRegisterPageFn"
-              >已注册？请登录</a
-            >
+            <a class="a-link" style="transform: rotateY(180deg)" @click="showRegisterPageFn">已注册？请登录</a>
           </register>
         </div>
       </div>
@@ -25,11 +20,11 @@
 </template>
 
 <script>
-import Register from "./Register.vue";
-import Login from "./Login";
+import Register from "./Register.vue"
+import Login from "./Login"
 export default {
   name: "index",
-  data() {
+  data () {
     return {
       loginForm: {
         user: "",
@@ -38,14 +33,14 @@ export default {
       },
       formClass: "info",
       showRegisterPage: false,
-    };
+    }
   },
   components: {
     Login,
     Register,
   },
   methods: {
-    showRegisterPageFn() {
+    showRegisterPageFn () {
       if (!this.showRegisterPage) {
         this.formClass = "info flipPage";
       } else {
@@ -54,16 +49,16 @@ export default {
       setTimeout(() => {
         this.showRegisterPage = !this.showRegisterPage;
       }, 500);
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 #login {
   position: relative;
   .login-bg {
-    background: url("../../assets/bg1.jpg") no-repeat;
+    background: url('../../assets/bg1.jpg') no-repeat;
     background-size: cover;
     min-height: 100vh;
     filter: blur(1.3px);
