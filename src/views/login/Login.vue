@@ -3,7 +3,11 @@
     <h2>登 录</h2>
     <Form ref="loginForm" class="loginForm" :model="loginForm">
       <FormItem>
-        <Input v-model="loginForm.user" prefix="md-person" placeholder="User ID" />
+        <Input
+          v-model="loginForm.user"
+          prefix="md-person"
+          placeholder="User ID"
+        />
       </FormItem>
       <FormItem>
         <Input
@@ -16,10 +20,14 @@
       </FormItem>
       <FormItem class="isCheck">
         <Checkbox v-model="loginForm.isCheck" size="small">记住用户名</Checkbox>
-        <router-link to="/retrievePassword" class="retrievePassword">忘记密码</router-link>
+        <router-link to="/retrievePassword" class="retrievePassword"
+          >忘记密码</router-link
+        >
       </FormItem>
       <FormItem>
-        <Button type="primary" class="login-btn" @click="handleSubmit()">登录</Button>
+        <Button type="primary" class="login-btn" @click="handleSubmit()"
+          >登录</Button
+        >
       </FormItem>
     </Form>
     <slot></slot>
@@ -41,17 +49,18 @@ export default {
   },
   methods: {
     handleSubmit () {
+      this.$router.push({ path: '/' })
       // console.log(this.$md5(this.loginForm.password), this.loginForm.password);
-      const obj = {
-        userID: this.loginForm.user,
-        password: this.loginForm.password
-      }
-      loginSubmit(obj).then(res => {
-        this.$Message.success(res);
-      })
+      // const obj = {
+      //   userID: this.loginForm.user,
+      //   password: this.loginForm.password
+      // }
+      // loginSubmit(obj).then(res => {
+      //   this.$Message.success(res)
+      // })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
