@@ -2,14 +2,14 @@
   <div class="layout">
     <Layout>
       <Sider
-        ref="side1"
+        ref="side"
         hide-trigger
         collapsible
         :collapsed-width="78"
         v-model="isCollapsed"
       >
         <div class="logo">logo</div>
-        <menu-info></menu-info>
+        <menu-info :isCollapsed="isCollapsed"></menu-info>
       </Sider>
       <Layout>
         <Header :style="{ padding: 0 }" class="layout-header-bar">
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     collapsedSider () {
-      this.$refs.side1.toggleCollapse();
+      this.$refs.side.toggleCollapse();
     }
   }
 }
@@ -97,5 +97,23 @@ export default {
 }
 .rotate-icon {
   transform: rotate(-90deg);
+}
+/deep/ .ivu-layout-sider {
+  @include sider-bg-color;
+}
+/deep/ .ivu-menu-dark {
+  @include sider-bg-color;
+}
+/deep/ .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
+  @include sider-bg-color;
+}
+/deep/
+  .ivu-menu-dark.ivu-menu-vertical
+  .ivu-menu-opened
+  .ivu-menu-submenu-title {
+  @include sider-bg-color;
+}
+/deep/ .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu-title:hover {
+  @include sider-style;
 }
 </style>

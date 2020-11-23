@@ -5,6 +5,7 @@ import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 import md5 from 'md5'
 import store from './store/index'
+import './styles/index.scss'
 import './permission'
 
 Vue.config.productionTip = false
