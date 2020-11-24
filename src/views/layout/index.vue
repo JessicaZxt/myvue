@@ -104,7 +104,7 @@ export default {
   @include sider-bg-color;
 }
 /deep/ .ivu-menu-dark.ivu-menu-vertical .ivu-menu-opened {
-  @include sider-bg-color;
+  background-color: #101117;
 }
 /deep/
   .ivu-menu-dark.ivu-menu-vertical
