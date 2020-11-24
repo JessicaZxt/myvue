@@ -24,11 +24,11 @@
         </MenuItem>
         <DropdownMenu slot="list">
           <div @click="addTagsFn(item)" v-for="item in menus" :key="item.path">
-            <DropdownItem>
-              <router-link class="color" :to="item.path"
-                >{{ item.name }}
-              </router-link>
-            </DropdownItem>
+            <router-link class="a-color" :to="item.path">
+              <DropdownItem>
+                {{ item.name }}
+              </DropdownItem>
+            </router-link>
           </div>
         </DropdownMenu>
       </Dropdown>
@@ -49,12 +49,10 @@ export default {
       activeName: '/home-page',
       menus: [{
         path: '/home-page',
-        name: '首页',
-        color: 'default'
+        name: '首页'
       }, {
         path: '/test',
-        name: '测试页',
-        color: 'default'
+        name: '测试页'
       }]
     }
   },
@@ -80,6 +78,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@mixin collapsed-menu-transition($transformPx, $fontSizePx) {
+  transform: translateX($transformPx);
+  transition: font-size 0.2s ease, transform 0.2s ease;
+  vertical-align: middle;
+  font-size: $fontSizePx;
+}
 #menu-info {
   .menu-icon {
     transition: all 0.3s;
@@ -98,20 +102,14 @@ export default {
     transition: width 0.2s ease 0.2s;
   }
   .menu-item i {
-    transform: translateX(0px);
-    transition: font-size 0.2s ease, transform 0.2s ease;
-    vertical-align: middle;
-    font-size: 16px;
+    @include collapsed-menu-transition(0px, 16px);
   }
   .collapsed-menu span {
     width: 0px;
     transition: width 0.2s ease;
   }
   .collapsed-menu i {
-    transform: translateX(5px);
-    transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
-    vertical-align: middle;
-    font-size: 22px;
+    @include collapsed-menu-transition(5px, 22px);
   }
   .ivu-menu-dark.ivu-menu-vertical .ivu-menu-item:hover {
     background: $sideBarBg;
@@ -121,6 +119,15 @@ export default {
     width: 78px;
     height: 30px;
     line-height: 30px;
+  }
+  /deep/
+    .ivu-menu-dark.ivu-menu-vertical
+    .ivu-menu-child-item-active
+    > .ivu-menu-submenu-title {
+    color: hsla(0, 0%, 100%, 0.7);
+    &:hover {
+      color: #fff;
+    }
   }
   /deep/ .ivu-select-dropdown {
     background-color: $sideBarBg;
@@ -136,6 +143,12 @@ export default {
     .ivu-menu-item-active:not(.ivu-menu-submenu) {
     color: hsla(0, 0%, 100%, 0.7);
     background: $sideBarBg;
+  }
+  .a-color {
+    color: hsla(0, 0%, 100%, 0.7);
+    &:hover {
+      color: #fff;
+    }
   }
 }
 </style>

@@ -16,7 +16,7 @@
             <Tag
               type="dot"
               closable
-              :color="item.color"
+              :color="item.path === currentRoutePath ? 'primary' : 'default'"
               @on-close="closeCurrentTag(item)"
               @click.native="changeTag(item)"
               >{{ item.name }}</Tag
@@ -45,7 +45,15 @@ export default {
   },
   data () {
     return {
-      //
+      currentRoutePath: ''
+    }
+  },
+  watch: {
+    $route: {
+      handler (val) {
+        this.currentRoutePath = val.path
+      },
+      immediate: true
     }
   },
   methods: {

@@ -1,11 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/views/Login/index'
-import RetrievePassword from '@/views/login/RetrievePassword'
-import Layout from '@/views/layout/index'
-import HomePage from '@/views/homePage/index'
-import Test from '@/views/test/index'
-
 Vue.use(Router)
 
 export default new Router({
@@ -13,25 +7,30 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: () => import('@/views/Login/index')
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: () => import('@/views/errorPage/404')
     },
     {
       path: '/retrievePassword',
       name: 'retrievePassword',
-      component: RetrievePassword
+      component: () => import('@/views/login/RetrievePassword')
     },
     {
       path: '/',
-      component: Layout,
+      component: () => import('@/views/layout/index'),
       redirect: 'home-page',
       children: [{
         path: 'home-page',
         name: '首页',
-        component: HomePage
+        component: () => import('@/views/homePage/index')
       }, {
         path: 'test',
         name: '测试页',
-        component: Test
+        component: () => import('@/views/test/index')
       }]
     },
   ]

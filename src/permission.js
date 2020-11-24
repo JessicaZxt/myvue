@@ -1,13 +1,14 @@
 import router from './router'
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css' //这个样式必须引入
+import store from './store/index'
+import Vue from 'vue'
+import ViewUI from 'view-design'
 
-NProgress.configure({ showSpinner: false })
+Vue.use(ViewUI)
 
 router.beforeEach((to, form, next) => {
-    NProgress.start()
+    ViewUI.LoadingBar.start()
     next()
 })
 router.afterEach(to => {
-    NProgress.done()
+    ViewUI.LoadingBar.finish()
 })
