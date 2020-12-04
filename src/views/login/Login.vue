@@ -36,6 +36,7 @@
 
 <script>
 import { loginSubmit } from "@/api/login/index"
+import { setToken } from '@/untils/auth'
 export default {
   name: "Login",
   data () {
@@ -49,6 +50,7 @@ export default {
   },
   methods: {
     handleSubmit () {
+      setToken(111)
       this.$router.push({ path: '/' })
       // console.log(this.$md5(this.loginForm.password), this.loginForm.password);
       // const obj = {

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Message } from 'view-design'
+import router from '@/router/index'
 
 const service = axios.create({
     baseURL: 'http://192.168.0.104:8081',
@@ -27,7 +28,7 @@ service.interceptors.response.use(function (res) {
     switch (res && res.status) {
         case 401:
             Message.error('登录超时，请重新登录！')
-            window.location.href = './login'
+            router.push({ path: '/login' })
             location.reload()
             break;
         case 404:

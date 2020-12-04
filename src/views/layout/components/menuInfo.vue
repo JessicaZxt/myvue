@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   props: {
     isCollapsed: {
@@ -46,14 +47,14 @@ export default {
   },
   data () {
     return {
-      activeName: '/home-page',
-      menus: [{
-        path: '/home-page',
-        name: '首页'
-      }, {
-        path: '/test',
-        name: '测试页'
-      }]
+      activeName: '/home-page'
+      // menus: [{
+      //   path: '/home-page',
+      //   name: '首页'
+      // }, {
+      //   path: '/test',
+      //   name: '测试页'
+      // }]
     }
   },
   watch: {
@@ -62,6 +63,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['menus']),
     menuitemClasses () {
       return [
         'menu-item',
